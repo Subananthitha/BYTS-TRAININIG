@@ -1,0 +1,20 @@
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+       int size=nums.length;
+        int [] next = new int [size];
+        Stack<Integer> stack = new Stack<>();
+        for(int i=2*size-1;i>=0;i--){
+            while(stack.isEmpty() == false && stack.peek() <= nums[i%size]){
+                stack.pop();
+            }
+            if(i<size){
+                if(stack.isEmpty()==false)
+                    next[i]=stack.peek();
+                else
+                    next[i]=-1;
+            }
+            stack.push(nums[i%size]);
+        }
+        return next;
+    }
+}
